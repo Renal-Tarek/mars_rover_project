@@ -40,3 +40,12 @@ def color_thresh_rock(img):
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
     #mask=cv2.bitwise_and(img,img,mask=out)
     return mask
+
+def rover_coords(binary_img):
+    # Identify nonzero pixels
+    ypos, xpos = binary_img.nonzero()
+    # Calculate pixel positions with reference to the rover position being at the 
+    # center bottom of the image.  
+    x_pixel = -(ypos - binary_img.shape[0]).astype(np.float32)
+    y_pixel = -(xpos - binary_img.shape[1]/2 ).astype(np.float32)
+    return x_pixel, y_pixel
