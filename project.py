@@ -147,3 +147,5 @@ def perception_step(Rover):
     
     Rover.worldmap[y_pix_world_road, x_pix_world_road, 2] += 1
 
+ # 8) Convert rover-centric pixel positions to polar coordinates
+    dist, angle=to_polar_coords(x_pix_road,y_pix_road)
