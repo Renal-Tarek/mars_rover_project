@@ -106,3 +106,6 @@ def perception_step(Rover):
               ,[img.shape[1]/2+size,img.shape[0]-buffer],
              [img.shape[1] /2+ size, img.shape[0] - 2*size - buffer],
             [img.shape[1] /2- size, img.shape[0] - 2*size - buffer]])
+     # 2) Apply perspective transform
+    img=Rover.img
+    img_transformed = perspect_transform(img, src, dst)
