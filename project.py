@@ -92,3 +92,17 @@ def perspect_transform(img, src, dst):
     warped = cv2.warpPerspective(img, M, (img.shape[1], img.shape[0]))# keep same size as input image
     
     return warped
+# Apply the above functions in succession and update the Rover state accordingly
+def perception_step(Rover):
+    # Perform perception steps to update Rover()
+    # TODO: 
+    # NOTE: camera image is coming to you in Rover.img
+    # 1) Define source and destination points for perspective transform
+    img=Rover.img
+    src=np.float32([[10,140],[300,140],[210,95],[120,95]])
+    size=3
+    buffer=10
+    dst=np.float32([[img.shape[1]/2-size,img.shape[0]-buffer]
+              ,[img.shape[1]/2+size,img.shape[0]-buffer],
+             [img.shape[1] /2+ size, img.shape[0] - 2*size - buffer],
+            [img.shape[1] /2- size, img.shape[0] - 2*size - buffer]])
