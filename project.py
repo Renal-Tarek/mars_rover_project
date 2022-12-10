@@ -77,3 +77,10 @@ def translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale):
     ypix_translated = ((ypix_rot / scale) + ypos)
     # Return the result  
     return xpix_translated, ypix_translated
+
+def pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+    xpix_rot, ypix_rot = rotate_pix(xpix, ypix, yaw)
+    xpix_tran, ypix_tran = translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale)
+    x_pix_world = np.clip(np.int_(xpix_tran), 0, world_size - 1)
+    y_pix_world = np.clip(np.int_(ypix_tran), 0, world_size - 1)
+    return x_pix_world, y_pix_world
