@@ -69,3 +69,11 @@ def rotate_pix(xpix, ypix, yaw):
     ypix_rotated = (xpix * np.sin(yaw_rad)) + (ypix * np.cos(yaw_rad))
     # Return the result  
     return xpix_rotated, ypix_rotated
+
+def translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+    # Apply a scaling and a translation
+    
+    xpix_translated = ((xpix_rot / scale) + xpos)
+    ypix_translated = ((ypix_rot / scale) + ypos)
+    # Return the result  
+    return xpix_translated, ypix_translated
