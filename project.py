@@ -109,3 +109,10 @@ def perception_step(Rover):
      # 2) Apply perspective transform
     img=Rover.img
     img_transformed = perspect_transform(img, src, dst)
+
+     # 3) Apply color threshold to identify navigable terrain/obstacles/rock samples
+    img_terrain = color_thresh_road(img_transformed,rgb_thresh=(160, 160, 160))
+    
+    img_rock = color_thresh_rock(img_transformed)
+                    
+    img_obs = color_thresh_obsticals(img_transformed,rgb_thresh=(160, 160, 160))
