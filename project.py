@@ -129,3 +129,14 @@ def perception_step(Rover):
     
     x_pix_obs,y_pix_obs=rover_coords(img_obs)
     
+    # 6) Convert rover-centric pixel values to world coordinates
+    X_pos,Y_pos=Rover.pos
+    Yaw=Rover.yaw
+    scale=36
+    
+    x_pix_world_road ,y_pix_world_road=pix_to_world(x_pix_road, y_pix_road, X_pos, Y_pos, Yaw, 200, scale)
+    
+    x_pix_world_rock,y_pix_world_rock=pix_to_world(x_pix_rock,y_pix_rock, X_pos, Y_pos, Yaw, 200, scale)
+    
+    x_pix_world_obs,y_pix_world_obs=pix_to_world(x_pix_obs, y_pix_obs, X_pos, Y_pos, Yaw, 200, scale)
+    
