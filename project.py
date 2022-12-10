@@ -116,3 +116,8 @@ def perception_step(Rover):
     img_rock = color_thresh_rock(img_transformed)
                     
     img_obs = color_thresh_obsticals(img_transformed,rgb_thresh=(160, 160, 160))
+
+     # 4) Update Rover.vision_image (this will be displayed on left side of screen)
+    Rover.vision_image[:,:,0] = img_obs*255
+    Rover.vision_image[:,:,1] = img_rock*255
+    Rover.vision_image[:,:,2] = img_terrain*255
