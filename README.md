@@ -46,3 +46,8 @@ https://user-images.githubusercontent.com/105971383/210530210-be04d2fb-5723-42fd
 
 ## Autonomous Navigation and Mapping
 The Python files within this repository hook into the simulation and allow the rover to be fully autonomous in its goal of mapping the environment and collecting all the sample rocks before returning back to the starting position.
+
+
+## Performance and output
+
+![WhatsApp Image 2023-01-04 at 12 04 48 PM (2)](https://user-images.githubusercontent.com/105971383/210532004-03bb6ae4-56b2-4cb1-af5b-7f878a613a7f.jpeg)
