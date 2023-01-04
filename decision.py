@@ -68,18 +68,16 @@ def decision_step(Rover):
                     # Release the brake
                     Rover.brake = 0
                     # Set steer to mean angle
-                    Rover.steer = np.clip(np.mean(Rover.nav_angles * 180/np.pi), -15, 15)
+                    Rover.steer = (np.clip(np.mean(Rover.nav_angles * 180/np.pi), -15, 15)+3)
                     Rover.mode = 'forward'
                 
         elif Rover.mode=='rock':
-            '''''
-            if time.time()-Rover.time>20:
-                Rover.time=time.time()
-                Rover.mode='forward'
+           if Rover.Rock_stuck>=400:
                 Rover.found= False
+                Rover.mode='stuck_rock'
+                Rover.Rock_stuck=0
                 return Rover
-            '''
-            if Rover.picking_up != 0 or Rover.Rock_stuck>=400:
+            if Rover.picking_up != 0:
                 # Reset sample_seen flag
                 Rover.found= False
                 Rover.mode='forward'
@@ -90,9 +88,9 @@ def decision_step(Rover):
             avg_rock_angle = np.mean(Rover.Rock_angle * 180/np.pi)
             if -15 < avg_rock_angle < 15:
                 # Only drive straight for sample if it's within 13 deg
-                if max(Rover.Rock_dist) <= 20:
+                if max(Rover.Rock_dist) <= 16:
                     if Rover.vel <= 0.2:
-                        Rover.throttle = Rover.throttle_set
+                        Rover.throttle = 0.05
                         Rover.steer = avg_rock_angle
                     else:
                         Rover.throttle = 0
@@ -110,7 +108,7 @@ def decision_step(Rover):
                 else:
                     Rover.throttle = 0
                     Rover.brake = 0
-                    Rover.steer = avg_rock_angle/6
+                    Rover.steer = avg_rock_angle/5
             else:
                 # Keep the logic simple and ignore samples +/-13 degrees
                 Rover.found = False
