@@ -85,6 +85,7 @@ class RoverState():
         self.MAX_stuck_time=50
         self.Home_pos=None
         self.Rock_stuck=0
+        self.one=0
 # Initialize our rover 
 Rover = RoverState()
 
